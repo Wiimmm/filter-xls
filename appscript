@@ -1,0 +1,35 @@
+function doGet(e) {
+  const ss = SpreadsheetApp.openById('1OUWjpw-7f91AdloKeXoW5CBfN9IRMbgJF5s7KiyLhA0');
+  const sheet = ss.getSheetByName('Ficheiros');
+  const data = sheet.getDataRange().getValues();
+
+  const cliente = e.parameter.cliente || '';
+  const pessoa = e.parameter.pessoa || '';
+  const projeto = e.parameter.projeto || '';
+
+  const headers = data[0];
+  const rows = data.slice(1);
+
+  const filteredRows = rows.filter(row => {
+    const clienteOk = !cliente || row[1] === cliente;
+    const projetoOk = !projeto || row[3] === projeto;
+
+    let pessoaOk = true;
+    if (pessoa) {
+      if (row[4]) {
+        const pessoas = row[4].split(',').map(p => p.trim());
+        pessoaOk = pessoas.includes(pessoa);
+      } else {
+        pessoaOk = false;
+      }
+    }
+
+    return clienteOk && projetoOk && pessoaOk;
+  });
+
+  const result = [headers].concat(filteredRows);
+
+  return ContentService
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
