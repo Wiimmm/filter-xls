@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Ler Google Sheets com Filtros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <h1 style="text-align: center;">Dados da Planilha com Filtros</h1>
+
+    <div id="filters">
+        <label>Cliente:
+            <select id="clienteFilter">
+                <option value="">Todos</option>
+            </select>
+        </label>
+        <label>Pessoa:
+            <select id="pessoaFilter">
+                <option value="">Todos</option>
+            </select>
+        </label>
+        <label>Projeto:
+            <select id="projetoFilter">
+                <option value="">Todos</option>
+            </select>
+        </label>
+    </div>
+
+    <table id="sheet-table"></table>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

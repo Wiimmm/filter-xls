@@ -1,0 +1,27 @@
+table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        #filters {
+            display: none;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        #filters select {
+            margin-right: 20px;
+            padding: 6px;
+        }
