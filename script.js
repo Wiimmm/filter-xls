@@ -1,5 +1,5 @@
 const SPREADSHEET_ID = '1OUWjpw-7f91AdloKeXoW5CBfN9IRMbgJF5s7KiyLhA0';
-const API_KEY = '----------'; // paste your API key here
+const API_KEY = 'AIzaSyAA8UQ1TTS7pEQHKcAHyxZVHF074YFDWlU'; // paste your API key here
 // Note: Make sure to enable the Google Sheets API and set up your API key in the google cloud console.
 // Also, ensure that the Google Sheet is shared with the service account or is public if you're using an API key.
 // For more information, refer to the Google Sheets API documentation: https://developers.google.com/sheets/api/quickstart/js
@@ -10,8 +10,16 @@ const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/val
 let originalData = [];
 let headers = [];
 
-function fetchFilteredData(cliente = '', pessoa = 'P1', projeto = '') {
-    const apiUrl = '----------'; // Replace with your actual Google Apps Script URL
+document.getElementById('filters').onchange = function() {
+    const cliente = document.getElementById('clienteFilter').value;
+    const pessoa = document.getElementById('pessoaFilter').value;
+    const projeto = document.getElementById('projetoFilter').value;
+
+    fetchFilteredData(cliente, pessoa, projeto);
+}
+
+function fetchFilteredData(cliente = '', pessoa = '', projeto = '') {
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbxPKPsBCdSzl4bUGp9k9pHsErDxwmVhUXaz7NeBa9juiCi62irqBMMt5xbgY4u_L_1_/exec'; // Replace with your actual Google Apps Script URL
     const url = `${apiUrl}?cliente=${encodeURIComponent(cliente)}&pessoa=${encodeURIComponent(pessoa)}&projeto=${encodeURIComponent(projeto)}`;
 
     fetch(url)
